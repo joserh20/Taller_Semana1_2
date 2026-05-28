@@ -12,6 +12,7 @@ public class Caso4 {
         // Creamos dos objetos más
         Contador obj2 = new Contador();
         Contador obj3 = new Contador();
+        Contador obj4 = new Contador();
         
         // Mostramos el total final
         System.out.println("Objetos totales creados: " + Contador.cantidadObjetos);

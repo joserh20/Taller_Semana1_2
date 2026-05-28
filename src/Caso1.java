@@ -8,10 +8,10 @@ public class Caso1 {
         
         System.out.println("--- CALCULADORA CON MÉTODOS ---");
         System.out.print("Ingresa el primer número: ");
-        double num1 = lector.nextDouble();
+        int num1 = lector.nextInt();
         
         System.out.print("Ingresa el segundo número: ");
-        double num2 = lector.nextDouble();
+        int num2 = lector.nextInt();
         
         System.out.print("Elige la operación (+, -, *, /): ");
         char operacion = lector.next().charAt(0);
@@ -42,8 +42,8 @@ public class Caso1 {
     }
 
     // Métodos estáticos para las operaciones
-    public static double sumar(double a, double b) { return a + b; }
-    public static double restar(double a, double b) { return a - b; }
-    public static double multiplicar(double a, double b) { return a * b; }
+    public static int sumar(int a, int b) { return a + b; }
+    public static int restar(int a, int b) { return a - b; }
+    public static int multiplicar(int a, int b) { return a * b; }
     public static double dividir(double a, double b) { return a / b; }
 }
