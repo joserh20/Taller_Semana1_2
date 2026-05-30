@@ -1,35 +1,61 @@
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Caso5 {
-    public static void main(String[] args) {
-        Scanner lector = new Scanner(System.in);
-        ArrayList<String> listaEstudiantes = new ArrayList<>();
-        
-        System.out.println("--- REGISTRO DE ESTUDIANTES ---");
-        
+	@SuppressWarnings("resource")
+	public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        ArrayList<String> estudiantes = new ArrayList<>();
+
+        int cantidad = 0;
+
+        // Validar cantidad de estudiantes
         try {
-            System.out.print("¿Cuántos estudiantes deseas registrar?: ");
-            int cantidad = lector.nextInt();
-            lector.nextLine(); // Limpiar el buffer
-            
-            for (int i = 0; i < cantidad; i++) {
-                System.out.print("Ingresa el nombre del estudiante " + (i + 1) + ": ");
-                String nombre = lector.nextLine();
-                listaEstudiantes.add(nombre);
-            }
-            
-            System.out.println("\n--- Lista Completa ---");
-            for (String estudiante : listaEstudiantes) {
-                System.out.println("- " + estudiante);
-            }
-            
-        } catch (InputMismatchException e) {
-            // Captura el error si el usuario escribe letras en lugar de un número entero
-            System.out.println("Error: Ingresaste un dato inválido. Debías ingresar un número entero.");
-        } finally {
-            lector.close();
+
+            System.out.print("¿Cuantos estudiantes desea ingresar?: ");
+            cantidad = Integer.parseInt(sc.nextLine());
+
+        } catch (Exception e) {
+
+            System.out.println("Error: Debe ingresar un numero entero.");
+            return;
         }
+
+        // Ingresar nombres
+        for (int i = 0; i < cantidad; i++) {
+
+            try {
+
+                System.out.print("Ingrese el nombre del estudiante " + (i + 1) + ": ");
+                String nombre = sc.nextLine();
+
+                // Error si esta vacio
+                if (nombre.trim().isEmpty()) {
+                    throw new Exception("No se permiten espacios vacios.");
+                }
+
+                // Error si contiene numeros
+                if (nombre.matches(".*\\d.*")) {
+                    throw new Exception("El nombre no puede contener numeros.");
+                }
+
+                estudiantes.add(nombre);
+
+            } catch (Exception e) {
+
+                System.out.println("Error: " + e.getMessage());
+                i--; // vuelve a pedir el nombre
+            }
+        }
+
+        // Mostrar lista completa
+        System.out.println("\nLista de estudiantes:");
+
+        for (String estudiante : estudiantes) {
+            System.out.println("- " + estudiante);
+        }
+
+        sc.close();
     }
 }
